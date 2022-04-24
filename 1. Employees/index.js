@@ -103,7 +103,17 @@ filteredAges.forEach(elem => console.log(elem));
 function getFoundName(employee, searchName) {
     if (Array.isArray(employee) && searchName) {
         let foundName = employee.find((elem) => {
-            return elem.name == searchName;
+            let verifiable = elem.name.split('');
+            let input = searchName.split('');
+            let count = 0;
+            for (i = 0; i < input.length; i++) {
+                if(verifiable[i]==input[i]){
+                    count++
+                }
+                if(count>=3){
+                    return true;
+                }
+            }
         })
         if (foundName) {
             return foundName;
@@ -114,7 +124,7 @@ function getFoundName(employee, searchName) {
         console.log('Oops. Something went wrong');
     }
 }
-let foundName = getFoundName(employee, 'Shannen Speir');
+let foundName = getFoundName(employee, 'Albert');
 console.log(foundName);
 
 //1.5 Вернуть имена всех работников в одной строке - “Our employees list is: “EMPLOYEE_NAME_1, EMPLOYEE_NAME_2, EMPLOYEE_NAME_3”. 
