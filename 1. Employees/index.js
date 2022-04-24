@@ -67,10 +67,14 @@ console.log(amountSalary);
 //1.2 Изменить имена всех сотрудников, приписав к ним префикс “Front End Camp Employee - EMPLOYEE_NAME” и вернуть измененный массив.
 function getChangedNames(employee) {
     if (Array.isArray(employee)) {
-        let changedNames = employee.map((elem) => {
+        let changedNames = [...employee];
+        for (i = 0; i < changedNames.length; i++) {
+            changedNames[i] = {...changedNames[i]}
+        }
+        changedNames = changedNames.map(elem=>{
             elem.name = 'Front End Camp Employee - ' + elem.name;
             return elem;
-        });
+        })
         return changedNames;
     } else {
         console.log('Entered value is not an array.');
@@ -110,7 +114,7 @@ function getFoundName(employee, searchName) {
         console.log('Oops. Something went wrong');
     }
 }
-let foundName = getFoundName(employee, 'Axe Lofthouse');
+let foundName = getFoundName(employee, 'Shannen Speir');
 console.log(foundName);
 
 //1.5 Вернуть имена всех работников в одной строке - “Our employees list is: “EMPLOYEE_NAME_1, EMPLOYEE_NAME_2, EMPLOYEE_NAME_3”. 
