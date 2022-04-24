@@ -71,7 +71,7 @@ function getChangedNames(employee) {
         for (i = 0; i < changedNames.length; i++) {
             changedNames[i] = {...changedNames[i]}
         }
-        changedNames = changedNames.map(elem=>{
+        changedNames = changedNames.map(elem => {
             elem.name = 'Front End Camp Employee - ' + elem.name;
             return elem;
         })
@@ -110,7 +110,7 @@ function getFoundName(employee, searchName) {
                 if(verifiable[i]==input[i]){
                     count++
                 }
-                if(count>=3){
+                if(count==input.length){
                     return true;
                 }
             }
@@ -149,15 +149,23 @@ console.log(allNames);
 function sortEmployee(employee, criterion) {
     if (Array.isArray(employee) && criterion) {
         if (criterion === 'age') {
-            let sort = employee.sort((a, b) => {
+            let sortArray = [...employee];
+            for(i = 0; i < sortArray.length; i++){
+                sortArray[i] = {...sortArray[i]};
+            }
+            sortArray.sort((a, b) => {
                 return a.age - b.age
             })
-            return sort;
+            return sortArray;
         } else if (criterion === 'salary') {
-            let sort = employee.sort((a, b) => {
+            let sortArray = [...employee];
+            for(i = 0; i < sortArray.length; i++){
+                sortArray[i] = {...sortArray[i]};
+            }
+            sortArray.sort((a, b) => {
                 return a.salary - b.salary
             })
-            return sort;
+            return sortArray;
         } else {
             console.log("Sorry, but there is no such sorting criterion.");
         }
@@ -165,5 +173,5 @@ function sortEmployee(employee, criterion) {
         console.log('Oops. Something went wrong.');
     }
 }
-let sortedEmpl = sortEmployee(employee, 'salary');
-sortedEmpl.forEach(elem => console.log(elem));
+let sortedEmployee = sortEmployee(employee, 'salary');
+sortedEmployee.forEach(elem => console.log(elem));
